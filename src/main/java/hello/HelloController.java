@@ -1,5 +1,6 @@
 package hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.ExportMetricReader;
 import org.springframework.boot.actuate.autoconfigure.ExportMetricWriter;
@@ -15,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
     @Value("${spring.application.name:application}.${random.value:0000}")
     private String prefix = "metrics";
-    @Bean
-    @ExportMetricReader
-    public MetricReader metricReader() {
-        return new MetricRegistryMetricReader(metricRegistry);
-    }
+
+
     @Bean
     @ExportMetricWriter
     MetricWriter metricWriter() {
