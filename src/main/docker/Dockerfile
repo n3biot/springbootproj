@@ -1,5 +1,7 @@
 FROM frolvlad/alpine-oraclejdk8:slim
-VOLUME /tmp
-ADD springboot-0.1.0.jar app.jar
-RUN sh -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+VOLUME /opt
+VOLUME /opt/config
+ADD springboot-0.1.0.jar /opt/app.jar
+RUN sh -c 'touch /opt/app.jar'
+WORKDIR /opt
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/opt/app.jar"]
